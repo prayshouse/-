@@ -1,0 +1,21 @@
+/* Write your styles */
+.Absolute-Center {
+    width: 50%;
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+}
+.dynamic-picture {
+    height: 500px;
+}
+.top-right-picture {
+    height: 158px;
+}
+.list-picture {
+    height: 150px;
+}
+@media only screen and (min-width: 640px) {
+    .news-source{
+        margin-left: 65%;
+    }
+}
