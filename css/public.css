@@ -241,6 +241,12 @@ footer a:hover{
     margin-top: -45px;
     margin-left: 50%;
 }
+.newsico-l{
+    color: #aaa;
+    position: absolute;
+    margin-top: -35px;
+    margin-left: 78%;
+}
 .profile-newsico{
     color: #aaa;
     position: absolute;

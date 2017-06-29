@@ -93,7 +93,7 @@
     <div class="am-container" >
         <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-6 am-thumbnails" id="topface">
             <li>
-                <a href="category2.php">
+                <a href="category.php">
                 <div class="ctl active">
                     <img src="Temp-images/face1.jpg">
                     <h3>一号女嘉宾</h3>

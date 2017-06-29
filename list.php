@@ -72,27 +72,27 @@ $typeId = get_type($type);
             <ul class="am-nav am-nav-pills am-topbar-nav">
 
                 <li><a href="index.php">首页</a></li>
-                <li <?php if ($typeId == TOP) echo 'class = "am-active"' ?>><a href="profile.php?type=top">头条</a></li>
-                <li <?php if ($typeId == FINANCIAL) echo 'class = "am-active"' ?>><a href="profile.php?type=financial">财经</a></li>
-                <li <?php if ($typeId == SPORT) echo 'class = "am-active"' ?>><a href="profile.php?type=sport">体育</a></li>
-                <li <?php if ($typeId == ENTERTAINMENT) echo 'class = "am-active"' ?>><a href="profile.php?type=entertainment">娱乐</a></li>
-                <li <?php if ($typeId == MILITARY) echo 'class = "am-active"' ?>><a href="profile.php?type=military">军事</a></li>
-                <li <?php if ($typeId == EDUCATION) echo 'class = "am-active"' ?>><a href="profile.php?type=education">教育</a></li>
-                <li <?php if ($typeId == TECHNOLOGY) echo 'class = "am-active"' ?>><a href="profile.php?type=technology">科技</a></li>
-                <li <?php if ($typeId == NBA) echo 'class = "am-active"' ?>><a href="profile.php?type=nba">NBA</a></li>
-                <li <?php if ($typeId == STOCK) echo 'class = "am-active"' ?>><a href="profile.php?type=stock">股票</a></li>
-                <li <?php if ($typeId == CONSTELLATION) echo 'class = "am-active"' ?>><a href="profile.php?type=constellation">星座</a></li>
-                <li <?php if ($typeId == FEMALE) echo 'class = "am-active"' ?>><a href="profile.php?type=female">女性</a></li>
-                <li <?php if ($typeId == HEALTH) echo 'class = "am-active"' ?>><a href="profile.php?type=health">健康</a></li>
-                <li <?php if ($typeId == PARENTING) echo 'class = "am-active"' ?>><a href="profile.php?type=parenting">育儿</a></li>
+                <li <?php if ($typeId == TOP) echo 'class = "am-active"' ?>><a href="list.php?type=top">头条</a></li>
+                <li <?php if ($typeId == FINANCIAL) echo 'class = "am-active"' ?>><a href="list.php?type=financial">财经</a></li>
+                <li <?php if ($typeId == SPORT) echo 'class = "am-active"' ?>><a href="list.php?type=sport">体育</a></li>
+                <li <?php if ($typeId == ENTERTAINMENT) echo 'class = "am-active"' ?>><a href="list.php?type=entertainment">娱乐</a></li>
+                <li <?php if ($typeId == MILITARY) echo 'class = "am-active"' ?>><a href="list.php?type=military">军事</a></li>
+                <li <?php if ($typeId == EDUCATION) echo 'class = "am-active"' ?>><a href="list.php?type=education">教育</a></li>
+                <li <?php if ($typeId == TECHNOLOGY) echo 'class = "am-active"' ?>><a href="list.php?type=technology">科技</a></li>
+                <li <?php if ($typeId == NBA) echo 'class = "am-active"' ?>><a href="list.php?type=nba">NBA</a></li>
+                <li <?php if ($typeId == STOCK) echo 'class = "am-active"' ?>><a href="list.php?type=stock">股票</a></li>
+                <li <?php if ($typeId == CONSTELLATION) echo 'class = "am-active"' ?>><a href="list.php?type=constellation">星座</a></li>
+                <li <?php if ($typeId == FEMALE) echo 'class = "am-active"' ?>><a href="list.php?type=female">女性</a></li>
+                <li <?php if ($typeId == HEALTH) echo 'class = "am-active"' ?>><a href="list.php?type=health">健康</a></li>
+                <li <?php if ($typeId == PARENTING) echo 'class = "am-active"' ?>><a href="list.php?type=parenting">育儿</a></li>
             </ul>
 
             <div class="am-topbar-right">
-                <button class="am-btn am-btn-default am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span>注册</button>
+                <a href="register.php"><button class="am-btn am-btn-default am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span>注册</button></a>
             </div>
 
             <div class="am-topbar-right">
-                <button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span> 登录</button>
+                <a href="login.php"><button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span> 登录</button></a>
             </div>
         </div>
     </div>
@@ -128,16 +128,16 @@ $mysql->query("SET NAMES utf8");
                         $row = $result->fetch_assoc();
                         echo "<li class=\"am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left\" data-am-scrollspy=\"{animation:'fade'}\">";
                         echo "<div class=\"am-u-sm-5 am-list-thumb\">";
-                        echo "<a href=\"http://www.douban.com/online/11624755/\">";
+                        echo "<a href=\"news.php?type=$type&id=$row[id]\">";
                         echo "<img src=\"$row[pic]\" class=\"list-picture\" alt=\"$row[title]\"/>";
                         echo "</a>";
                         echo "</div>";
                         echo "<div class=\" am-u-sm-7 am-list-main\">";
-                        echo "<h3 class=\"am-list-item-hd\"><a href=\"http://www.douban.com/online/11624755/\">$row[title]</a></h3>";
+                        echo "<h3 class=\"am-list-item-hd\"><a href=\"news.php?type=$type&id=$row[id]\">$row[title]</a></h3>";
                         echo "<div class=\"am-list-item-src\">$row[src]</div>";
                         echo "</div>";
                         echo "</li>";
-                        echo "<div class=\"profile-newsico am-fr\">";
+                        echo "<div class=\"newsico-l am-fr\">";
                         echo "<i class=\"am-icon-clock-o\">".str_replace("-", "/", $row['newstime'])."</i>";
                         echo "</div>";
                     }
@@ -147,11 +147,11 @@ $mysql->query("SET NAMES utf8");
                 <ul data-am-widget="pagination" class="am-pagination am-pagination-default">
 
                     <li class="am-pagination-first ">
-                        <a href="<?php echo "profile.php?type=$type&page=1"?>" class="">第一页</a>
+                        <a href="<?php echo "list.php?type=$type&page=1"?>" class="">第一页</a>
                     </li>
 
                     <li class="am-pagination-prev ">
-                        <a href="<?php echo "profile.php?type=$type&page=1"?>" class="">上一页</a>
+                        <a href="<?php echo "list.php?type=$type&page=1"?>" class="">上一页</a>
                     </li>
 
 
@@ -161,23 +161,24 @@ $mysql->query("SET NAMES utf8");
                             echo "<li class='am-active'>";
                         else
                             echo "<li class=''>";
-                        echo "<a href='profile.php?type=$type&page=$i'>$i</a>";
+                        echo "<a href='list.php?type=$type&page=$i'>$i</a>";
                         echo "</li>";
 
                     }
                     ?>
 
                     <li class="am-pagination-next ">
-                        <a href="<?php echo "profile.php?type=$type&page=$nextPage"?>" class="">下一页</a>
+                        <a href="<?php echo "list.php?type=$type&page=$nextPage"?>" class="">下一页</a>
                     </li>
 
                     <li class="am-pagination-last ">
-                        <a href="<?php echo "profile.php?type=$type&page=$pageCount"?>" class="">最末页</a>
+                        <a href="<?php echo "list.php?type=$type&page=$pageCount"?>" class="">最末页</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
+
     <div class="am-u-sm-0 am-u-md-0 am-u-lg-4 ">
         <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
             <h2 class="am-titlebar-title ">
@@ -310,35 +311,13 @@ $mysql->close();
 <footer>
     <div class="content">
         <ul class="am-avg-sm-5 am-avg-md-5 am-avg-lg-5 am-thumbnails">
-            <li><a href="#">联系我们</a></li>
-            <li><a href="#">加入我们</a></li>
-            <li><a href="#">合作伙伴</a></li>
-            <li><a href="#">广告及服务</a></li>
-            <li><a href="#">友情链接</a></li>
+            <li><a href="https://github.com/prayshouse/News">联系我们</a></li>
+            <li><a href="https://github.com/prayshouse/News">加入我们</a></li>
+            <li><a href="https://github.com/prayshouse/News">合作伙伴</a></li>
+            <li><a href="https://github.com/prayshouse/News">广告及服务</a></li>
+            <li><a href="https://github.com/prayshouse/News">友情链接</a></li>
         </ul>
         <div class="btnlogo"><img src="images/btnlogo.png"/></div>
-        <p>Amaze UI出品<br>© 2016 AllMobilize, Inc. Licensed under MIT license. 模板收集自 <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> -  More Templates  <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>.</p>
-        <div class="w2div">
-            <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
-  am-avg-md-2 am-avg-lg-2 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
-                <li class="w2">
-                    <div class="am-gallery-item">
-                        <a href="Temp-images/dd.jpg">
-                            <img src="Temp-images/dd.jpg" />
-                            <h3 class="am-gallery-title">订阅号：Amaze UI</h3>
-                        </a>
-                    </div>
-                </li>
-                <li   class="w2">
-                    <div class="am-gallery-item">
-                        <a href="Temp-images/dd.jpg">
-                            <img src="Temp-images/dd.jpg"/>
-                            <h3 class="am-gallery-title">服务号：Amaze UI</h3>
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        </div>
     </div>
 </footer>
 </body>

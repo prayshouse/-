@@ -28,6 +28,8 @@
     <link rel="stylesheet" href="assets/css/amazeui.css">
     <link rel="stylesheet" href="assets/css/app.css">
     <link rel="stylesheet" href="css/public.css">
+    <link rel="stylesheet" href="css/login-register.css">
+
 
     <!--[if (gte IE 9)|!(IE)]><!-->
     <script src="assets/js/jquery.min.js"></script>
@@ -57,28 +59,28 @@
         <div class="am-collapse am-topbar-collapse" id="collapse-head">
             <ul class="am-nav am-nav-pills am-topbar-nav">
 
-                <li class = "am-active"><a href="index.php">首页</a></li>
-                <li><a href="profile.php?page=1&type=top">头条</a></li>
-                <li><a href="profile.php?page=1&type=financial">财经</a></li>
-                <li><a href="profile.php?page=1&type=sport">体育</a></li>
-                <li><a href="profile.php?page=1&type=entertainment">娱乐</a></li>
-                <li><a href="profile.php?page=1&type=military">军事</a></li>
-                <li><a href="profile.php?page=1&type=education">教育</a></li>
-                <li><a href="profile.php?page=1&type=technology">科技</a></li>
-                <li><a href="profile.php?page=1&type=nba">NBA</a></li>
-                <li><a href="profile.php?page=1&type=stock">股票</a></li>
-                <li><a href="profile.php?page=1&type=constellation">星座</a></li>
-                <li><a href="profile.php?page=1&type=female">女性</a></li>
-                <li><a href="profile.php?page=1&type=health">健康</a></li>
-                <li><a href="profile.php?page=1&type=parenting">育儿</a></li>
+                <li class="am-active"><a href="index.php">首页</a></li>
+                <li><a href="list.php?type=top">头条</a></li>
+                <li><a href="list.php?type=financial">财经</a></li>
+                <li><a href="list.php?type=sport">体育</a></li>
+                <li><a href="list.php?type=entertainment">娱乐</a></li>
+                <li><a href="list.php?type=military">军事</a></li>
+                <li><a href="list.php?type=education">教育</a></li>
+                <li><a href="list.php?type=technology">科技</a></li>
+                <li><a href="list.php?type=nba">NBA</a></li>
+                <li><a href="list.php?type=stock">股票</a></li>
+                <li><a href="list.php?type=constellation">星座</a></li>
+                <li><a href="list.php?type=female">女性</a></li>
+                <li><a href="list.php?type=health">健康</a></li>
+                <li><a href="list.php?type=parenting">育儿</a></li>
             </ul>
 
             <div class="am-topbar-right">
-                <button class="am-btn am-btn-default am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span>注册</button>
+                <a href="register.php"><button class="am-btn am-btn-default am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span>注册</button></a>
             </div>
 
             <div class="am-topbar-right">
-                <button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span> 登录</button>
+                <a href="login.php"><button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span> 登录</button></a>
             </div>
         </div>
     </div>
@@ -96,6 +98,7 @@ $result = $mysql->query($sql);
 $row = $result->fetch_array();
 $time = time();
 
+$toUpdate = false;
 if ($time - $row['max_time'] > 3600) {
     console_log("updating the database");
     // insert new timestamp
@@ -103,22 +106,23 @@ if ($time - $row['max_time'] > 3600) {
     $mysql->query($sql);
 
     // update the database
-    update_database(CONSTELLATION);
-    update_database(EDUCATION);
-    update_database(ENTERTAINMENT);
-    update_database(FEMALE);
-    update_database(FINANCIAL);
-    update_database(HEALTH);
-    update_database(MILITARY);
-    update_database(NBA);
-    update_database(PARENTING);
-    update_database(SPORT);
-    update_database(STOCK);
-    update_database(TECHNOLOGY);
-    update_database(TOP);
+//    update_database(CONSTELLATION);
+//    update_database(EDUCATION);
+//    update_database(ENTERTAINMENT);
+//    update_database(FEMALE);
+//    update_database(FINANCIAL);
+//    update_database(HEALTH);
+//    update_database(MILITARY);
+//    update_database(NBA);
+//    update_database(PARENTING);
+//    update_database(SPORT);
+//    update_database(STOCK);
+//    update_database(TECHNOLOGY);
+//    update_database(TOP);
 }
 
 // top news
+if ($toUpdate) update_database(TOP);
 $mysql->query("SET NAMES utf8");
 $sql = "SELECT * FROM top ORDER BY id DESC LIMIT 30";
 $result = $mysql->query($sql);
@@ -213,980 +217,971 @@ $result = $mysql->query($sql);
     </div>
 </div>
 
-<!--banner2-->
-<!--div class="am-container">
-    <ul class="padding-none banner2 am-gallery am-avg-sm-2 am-avg-md-4 am-avg-lg-4 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
-        <li>
-            <div class="am-gallery-item">
-                <a href="news.php">
-                    <img src="Temp-images/tempnews.png"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="#">
-                    <img src="Temp-images/tempnews.png"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="#">
-                    <img src="Temp-images/tempnews.png"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div class="am-gallery-item">
-                <a href="#">
-                    <img src="Temp-images/tempnews.png"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                    <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                    <div class="am-gallery-desc">2375-09-26</div>
-                </a>
-            </div>
-        </li>
-    </ul>
-</div-->
 <!--news-->
 <div class="am-g am-container newatype">
     <div class="am-u-lg-8">
-    <!-- 财经 -->
-    <div class="am-u-sm-12 am-u-md-12 oh">
-        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
-            <h2 class="am-titlebar-title ">
-                财经
-            </h2>
-            <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
-            </nav>
-        </div>
-        <?php
-        $sql = "SELECT * FROM financial ORDER BY id DESC LIMIT 10";
-        $result = $mysql->query($sql);
-        ?>
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
-            <div class="am-list-news-bd">
-                <ul class="am-list">
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                </ul>
+        <!-- 财经 -->
+        <div class="am-u-sm-12 am-u-md-12 oh">
+            <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+                <h2 class="am-titlebar-title ">
+                    财经
+                </h2>
+                <nav class="am-titlebar-nav">
+                    <a href="list.php?type=financial">more &raquo;</a>
+                </nav>
             </div>
-            <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
-        </div>
-    </div>
-    <!-- 体育 -->
-    <div class="am-u-sm-12 am-u-md-12 oh">
-        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
-            <h2 class="am-titlebar-title ">
-                体育
-            </h2>
-            <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
-            </nav>
-        </div>
-        <?php
-        $sql = "SELECT * FROM sport ORDER BY id DESC LIMIT 10";
-        $result = $mysql->query($sql);
-        ?>
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
-            <div class="am-list-news-bd">
-                <ul class="am-list">
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
+            <?php
+            if ($toUpdate) update_database(FINANCIAL);
+            $sql = "SELECT * FROM financial ORDER BY id DESC LIMIT 10";
+            $result = $mysql->query($sql);
+            ?>
+            <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
+                <div class="am-list-news-bd">
+                    <ul class="am-list">
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=financial&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
 
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=financial&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
                         </div>
 
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=financial&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
 
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=financial&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
                         </div>
 
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=financial&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
 
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=financial&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
                         </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                </ul>
+                    </ul>
+                </div>
+                <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
             </div>
-            <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
         </div>
-    </div>
-    <!-- 娱乐 -->
-    <div class="am-u-sm-12 am-u-md-12 oh">
-        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
-            <h2 class="am-titlebar-title ">
-                娱乐
-            </h2>
-            <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
-            </nav>
-        </div>
-        <?php
-        $sql = "SELECT * FROM entertainment ORDER BY id DESC LIMIT 10";
-        $result = $mysql->query($sql);
-        ?>
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
-            <div class="am-list-news-bd">
-                <ul class="am-list">
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                </ul>
+        <!-- 体育 -->
+        <div class="am-u-sm-12 am-u-md-12 oh">
+            <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+                <h2 class="am-titlebar-title ">
+                    体育
+                </h2>
+                <nav class="am-titlebar-nav">
+                    <a href="list.php?type=sport">more &raquo;</a>
+                </nav>
             </div>
-            <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
-        </div>
-    </div>
-    <!-- 军事 -->
-    <div class="am-u-sm-12 am-u-md-12 oh">
-        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
-            <h2 class="am-titlebar-title ">
-                军事
-            </h2>
-            <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
-            </nav>
-        </div>
-        <?php
-        $sql = "SELECT * FROM military ORDER BY id DESC LIMIT 10";
-        $result = $mysql->query($sql);
-        ?>
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
-            <div class="am-list-news-bd">
-                <ul class="am-list">
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
+            <?php
+            if ($toUpdate) update_database(SPORT);
+            $sql = "SELECT * FROM sport ORDER BY id DESC LIMIT 10";
+            $result = $mysql->query($sql);
+            ?>
+            <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
+                <div class="am-list-news-bd">
+                    <ul class="am-list">
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=sport&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
 
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=sport&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
                         </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=sport&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
 
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+                            </div>
 
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=sport&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
                         </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=sport&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
 
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
+                            </div>
 
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=sport&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
                         </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                </ul>
+                    </ul>
+                </div>
+                <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
             </div>
-            <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
         </div>
-    </div>
-    <!-- 教育 -->
-    <div class="am-u-sm-12 am-u-md-12 oh">
-        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
-            <h2 class="am-titlebar-title ">
-                教育
-            </h2>
-            <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
-            </nav>
-        </div>
-        <?php
-        $sql = "SELECT * FROM education ORDER BY id DESC LIMIT 10";
-        $result = $mysql->query($sql);
-        ?>
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
-            <div class="am-list-news-bd">
-                <ul class="am-list">
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                </ul>
+        <!-- 娱乐 -->
+        <div class="am-u-sm-12 am-u-md-12 oh">
+            <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+                <h2 class="am-titlebar-title ">
+                    娱乐
+                </h2>
+                <nav class="am-titlebar-nav">
+                    <a href="list.php?type=entertainment">more &raquo;</a>
+                </nav>
             </div>
-            <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
-        </div>
-    </div>
-    <!-- 科技 -->
-    <div class="am-u-sm-12 am-u-md-12 oh">
-        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
-            <h2 class="am-titlebar-title ">
-                科技
-            </h2>
-            <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
-            </nav>
-        </div>
-        <?php
-        $sql = "SELECT * FROM technology ORDER BY id DESC LIMIT 10";
-        $result = $mysql->query($sql);
-        ?>
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
-            <div class="am-list-news-bd">
-                <ul class="am-list">
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
+            <?php
+            if ($toUpdate) update_database(ENTERTAINMENT);
+            $sql = "SELECT * FROM entertainment ORDER BY id DESC LIMIT 10";
+            $result = $mysql->query($sql);
+            ?>
+            <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
+                <div class="am-list-news-bd">
+                    <ul class="am-list">
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=entertainment&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
 
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=entertainment&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
                         </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=entertainment&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
 
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+                            </div>
 
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=entertainment&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
                         </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=entertainment&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
 
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
+                            </div>
 
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=entertainment&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
                         </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                </ul>
+                    </ul>
+                </div>
+                <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
             </div>
-            <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
         </div>
-    </div>
-    <!-- NBA -->
-    <div class="am-u-sm-12 am-u-md-12 oh">
-        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
-            <h2 class="am-titlebar-title ">
-                NBA
-            </h2>
-            <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
-            </nav>
-        </div>
-        <?php
-        $sql = "SELECT * FROM nba ORDER BY id DESC LIMIT 10";
-        $result = $mysql->query($sql);
-        ?>
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
-            <div class="am-list-news-bd">
-                <ul class="am-list">
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                </ul>
+        <!-- 军事 -->
+        <div class="am-u-sm-12 am-u-md-12 oh">
+            <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+                <h2 class="am-titlebar-title ">
+                    军事
+                </h2>
+                <nav class="am-titlebar-nav">
+                    <a href="list.php?type=military">more &raquo;</a>
+                </nav>
             </div>
-            <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
-        </div>
-    </div>
-    <!-- 股票 -->
-    <div class="am-u-sm-12 am-u-md-12 oh">
-        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
-            <h2 class="am-titlebar-title ">
-                股票
-            </h2>
-            <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
-            </nav>
-        </div>
-        <?php
-        $sql = "SELECT * FROM stock ORDER BY id DESC LIMIT 10";
-        $result = $mysql->query($sql);
-        ?>
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
-            <div class="am-list-news-bd">
-                <ul class="am-list">
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
+            <?php
+            if ($toUpdate) update_database(MILITARY);
+            $sql = "SELECT * FROM military ORDER BY id DESC LIMIT 10";
+            $result = $mysql->query($sql);
+            ?>
+            <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
+                <div class="am-list-news-bd">
+                    <ul class="am-list">
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=military&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
 
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=military&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
                         </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=military&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
 
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+                            </div>
 
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=military&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
                         </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=military&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
 
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
+                            </div>
 
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=military&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
                         </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                </ul>
+                    </ul>
+                </div>
+                <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
             </div>
-            <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
         </div>
-    </div>
-    <!-- 星座 -->
-    <div class="am-u-sm-12 am-u-md-12 oh">
-        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
-            <h2 class="am-titlebar-title ">
-                星座
-            </h2>
-            <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
-            </nav>
-        </div>
-        <?php
-        $sql = "SELECT * FROM constellation ORDER BY id DESC LIMIT 10";
-        $result = $mysql->query($sql);
-        ?>
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
-            <div class="am-list-news-bd">
-                <ul class="am-list">
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                </ul>
+        <!-- 教育 -->
+        <div class="am-u-sm-12 am-u-md-12 oh">
+            <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+                <h2 class="am-titlebar-title ">
+                    教育
+                </h2>
+                <nav class="am-titlebar-nav">
+                    <a href="list.php?type=enducation">more &raquo;</a>
+                </nav>
             </div>
-            <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
-        </div>
-    </div>
-    <!-- 女性 -->
-    <div class="am-u-sm-12 am-u-md-12 oh">
-        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
-            <h2 class="am-titlebar-title ">
-                女性
-            </h2>
-            <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
-            </nav>
-        </div>
-        <?php
-        $sql = "SELECT * FROM female ORDER BY id DESC LIMIT 10";
-        $result = $mysql->query($sql);
-        ?>
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
-            <div class="am-list-news-bd">
-                <ul class="am-list">
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
+            <?php
+            if ($toUpdate) update_database(EDUCATION);
+            $sql = "SELECT * FROM education ORDER BY id DESC LIMIT 10";
+            $result = $mysql->query($sql);
+            ?>
+            <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
+                <div class="am-list-news-bd">
+                    <ul class="am-list">
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=education&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
 
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=education&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
                         </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=education&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
 
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+                            </div>
 
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=education&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
                         </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=education&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
 
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
+                            </div>
 
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=education&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
                         </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                </ul>
+                    </ul>
+                </div>
+                <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
             </div>
-            <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
         </div>
-    </div>
-    <!-- 健康 -->
-    <div class="am-u-sm-12 am-u-md-12 oh">
-        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
-            <h2 class="am-titlebar-title ">
-                健康
-            </h2>
-            <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
-            </nav>
-        </div>
-        <?php
-        $sql = "SELECT * FROM health ORDER BY id DESC LIMIT 10";
-        $result = $mysql->query($sql);
-        ?>
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
-            <div class="am-list-news-bd">
-                <ul class="am-list">
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                </ul>
+        <!-- 科技 -->
+        <div class="am-u-sm-12 am-u-md-12 oh">
+            <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+                <h2 class="am-titlebar-title ">
+                    科技
+                </h2>
+                <nav class="am-titlebar-nav">
+                    <a href="list.php?type=technology">more &raquo;</a>
+                </nav>
             </div>
-            <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
-        </div>
-    </div>
-    <!-- 育儿 -->
-    <div class="am-u-sm-12 am-u-md-12 oh">
-        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
-            <h2 class="am-titlebar-title ">
-                育儿
-            </h2>
-            <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
-            </nav>
-        </div>
-        <?php
-        $sql = "SELECT * FROM parenting ORDER BY id DESC LIMIT 10";
-        $result = $mysql->query($sql);
-        ?>
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
-            <div class="am-list-news-bd">
-                <ul class="am-list">
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
+            <?php
+            if ($toUpdate) update_database(TECHNOLOGY);
+            $sql = "SELECT * FROM technology ORDER BY id DESC LIMIT 10";
+            $result = $mysql->query($sql);
+            ?>
+            <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
+                <div class="am-list-news-bd">
+                    <ul class="am-list">
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=technology&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
 
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=technology&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
                         </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=technology&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
 
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+                            </div>
 
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=technology&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
                         </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=technology&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
 
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
+                            </div>
 
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=technology&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
                         </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
-                        <div class="am-u-sm-5 am-list-thumb">
-                            <a href="http://www.douban.com/online/11624755/">
-                                <?php $row = $result->fetch_assoc() ?>
-                                <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
-                            </a>
-
-                        </div>
-
-                        <div class=" am-u-sm-7 am-list-main">
-                            <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/"><?php echo $row['title'] ?></a></h3>
-                            <div class="am-list-item-src"><?php echo $row['src'] ?></div>
-
-                        </div>
-
-                    </li>
-                    <div class="newsico am-fr">
-                        <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
-                    </div>
-                </ul>
+                    </ul>
+                </div>
+                <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
             </div>
-            <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
         </div>
-    </div>
+        <!-- NBA -->
+        <div class="am-u-sm-12 am-u-md-12 oh">
+            <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+                <h2 class="am-titlebar-title ">
+                    NBA
+                </h2>
+                <nav class="am-titlebar-nav">
+                    <a href="list.php?type=nba">more &raquo;</a>
+                </nav>
+            </div>
+            <?php
+            if ($toUpdate) update_database(NBA);
+            $sql = "SELECT * FROM nba ORDER BY id DESC LIMIT 10";
+            $result = $mysql->query($sql);
+            ?>
+            <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
+                <div class="am-list-news-bd">
+                    <ul class="am-list">
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=nba&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
+
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=nba&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
+                        </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=nba&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
+
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=nba&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
+                        </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=nba&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
+
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=nba&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
+                        </div>
+                    </ul>
+                </div>
+                <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
+            </div>
+        </div>
+        <!-- 股票 -->
+        <div class="am-u-sm-12 am-u-md-12 oh">
+            <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+                <h2 class="am-titlebar-title ">
+                    股票
+                </h2>
+                <nav class="am-titlebar-nav">
+                    <a href="list.php?type=stock">more &raquo;</a>
+                </nav>
+            </div>
+            <?php
+            if ($toUpdate) update_database(STOCK);
+            $sql = "SELECT * FROM stock ORDER BY id DESC LIMIT 10";
+            $result = $mysql->query($sql);
+            ?>
+            <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
+                <div class="am-list-news-bd">
+                    <ul class="am-list">
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=stock&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
+
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=stock&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
+                        </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=stock&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
+
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=stock&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
+                        </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=stock&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
+
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=stock&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
+                        </div>
+                    </ul>
+                </div>
+                <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
+            </div>
+        </div>
+        <!-- 星座 -->
+        <div class="am-u-sm-12 am-u-md-12 oh">
+            <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+                <h2 class="am-titlebar-title ">
+                    星座
+                </h2>
+                <nav class="am-titlebar-nav">
+                    <a href="list.php?type=constellation">more &raquo;</a>
+                </nav>
+            </div>
+            <?php
+            if ($toUpdate) update_database(CONSTELLATION);
+            $sql = "SELECT * FROM constellation ORDER BY id DESC LIMIT 10";
+            $result = $mysql->query($sql);
+            ?>
+            <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
+                <div class="am-list-news-bd">
+                    <ul class="am-list">
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=constellation&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
+
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=constellation&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
+                        </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=constellation&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
+
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=constellation&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
+                        </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=constellation&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
+
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=constellation&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
+                        </div>
+                    </ul>
+                </div>
+                <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
+            </div>
+        </div>
+        <!-- 女性 -->
+        <div class="am-u-sm-12 am-u-md-12 oh">
+            <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+                <h2 class="am-titlebar-title ">
+                    女性
+                </h2>
+                <nav class="am-titlebar-nav">
+                    <a href="list.php?type=female">more &raquo;</a>
+                </nav>
+            </div>
+            <?php
+            if ($toUpdate) update_database(FEMALE);
+            $sql = "SELECT * FROM female ORDER BY id DESC LIMIT 10";
+            $result = $mysql->query($sql);
+            ?>
+            <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
+                <div class="am-list-news-bd">
+                    <ul class="am-list">
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=female&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
+
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=female&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
+                        </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=female&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
+
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=female&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
+                        </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=female&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
+
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=female&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
+                        </div>
+                    </ul>
+                </div>
+                <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
+            </div>
+        </div>
+        <!-- 健康 -->
+        <div class="am-u-sm-12 am-u-md-12 oh">
+            <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+                <h2 class="am-titlebar-title ">
+                    健康
+                </h2>
+                <nav class="am-titlebar-nav">
+                    <a href="list.php?type=parenting">more &raquo;</a>
+                </nav>
+            </div>
+            <?php
+            if ($toUpdate) update_database(HEALTH);
+            $sql = "SELECT * FROM health ORDER BY id DESC LIMIT 10";
+            $result = $mysql->query($sql);
+            ?>
+            <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
+                <div class="am-list-news-bd">
+                    <ul class="am-list">
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=health&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
+
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=health&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
+                        </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=health&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
+
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=health&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
+                        </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=health&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
+
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=health&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
+                        </div>
+                    </ul>
+                </div>
+                <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
+            </div>
+        </div>
+        <!-- 育儿 -->
+        <div class="am-u-sm-12 am-u-md-12 oh">
+            <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
+                <h2 class="am-titlebar-title ">
+                    育儿
+                </h2>
+                <nav class="am-titlebar-nav">
+                    <a href="#more">more &raquo;</a>0
+                </nav>
+            </div>
+            <?php
+            if ($toUpdate) update_database(PARENTING);
+            $sql = "SELECT * FROM parenting ORDER BY id DESC LIMIT 10";
+            $result = $mysql->query($sql);
+            ?>
+            <div data-am-widget="list_news" class="am-list-news am-list-news-default news">
+                <div class="am-list-news-bd">
+                    <ul class="am-list">
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=parenting&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
+
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=parenting&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
+                        </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=parenting&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
+
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=parenting&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
+                        </div>
+                        <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" data-am-scrollspy="{animation:'fade'}">
+                            <div class="am-u-sm-5 am-list-thumb">
+                                <a href="<?php echo "news.php?type=parenting&id=$row[id]" ?>">
+                                    <?php $row = $result->fetch_assoc() ?>
+                                    <img src="<?php echo $row['pic'] ?>" class="list-picture" alt="<?php echo $row['title'] ?>"/>
+                                </a>
+
+                            </div>
+
+                            <div class=" am-u-sm-7 am-list-main">
+                                <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=parenting&id=$row[id]" ?>"><?php echo $row['title'] ?></a></h3>
+                                <div class="am-list-item-src"><?php echo $row['src'] ?></div>
+
+                            </div>
+
+                        </li>
+                        <div class="newsico am-fr">
+                            <i class="am-icon-clock-o"><?php echo str_replace("-", "/", $row['newstime']) ?></i>
+                        </div>
+                    </ul>
+                </div>
+                <a href="#"><img src="Temp-images/ad2.png" class="am-img-responsive" width="100%"/></a>
+            </div>
+        </div>
     </div>
     <!-- 侧栏 -->
     <div class="am-u-sm-12 am-u-md-12 am-u-lg-4">
@@ -1202,13 +1197,13 @@ $result = $mysql->query($sql);
             <ul class="am-list"  >
                 <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                     <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
+                        <a href="<?php echo "news.php?type=&id=$row[id]" ?>">
                             <img src="Temp-images/face.jpg" class="face"/>
                         </a>
                     </div>
 
                     <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
+                        <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=&id=$row[id]" ?>">勾三古寺</a></h3>
 
                         <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
                     </div>
@@ -1216,13 +1211,13 @@ $result = $mysql->query($sql);
                 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
                 <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                     <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
+                        <a href="<?php echo "news.php?type=&id=$row[id]" ?>">
                             <img src="Temp-images/face.jpg" class="face"/>
                         </a>
                     </div>
 
                     <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
+                        <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=&id=$row[id]" ?>">勾三古寺</a></h3>
 
                         <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
 
@@ -1231,13 +1226,13 @@ $result = $mysql->query($sql);
                 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
                 <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                     <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
+                        <a href="<?php echo "news.php?type=&id=$row[id]" ?>">
                             <img src="Temp-images/face.jpg" class="face"/>
                         </a>
                     </div>
 
                     <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
+                        <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=&id=$row[id]" ?>">勾三古寺</a></h3>
 
                         <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
 
@@ -1259,13 +1254,13 @@ $result = $mysql->query($sql);
             <ul class="am-list">
                 <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                     <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
+                        <a href="<?php echo "news.php?type=&id=$row[id]" ?>">
                             <img src="Temp-images/face.jpg" class="face"/>
                         </a>
                     </div>
 
                     <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
+                        <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=&id=$row[id]" ?>">勾三古寺</a></h3>
 
                         <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
                     </div>
@@ -1273,13 +1268,13 @@ $result = $mysql->query($sql);
                 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
                 <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                     <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
+                        <a href="<?php echo "news.php?type=&id=$row[id]" ?>">
                             <img src="Temp-images/face.jpg" class="face"/>
                         </a>
                     </div>
 
                     <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
+                        <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=&id=$row[id]" ?>">勾三古寺</a></h3>
 
                         <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
 
@@ -1288,13 +1283,13 @@ $result = $mysql->query($sql);
                 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
                 <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                     <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
+                        <a href="<?php echo "news.php?type=&id=$row[id]" ?>">
                             <img src="Temp-images/face.jpg" class="face"/>
                         </a>
                     </div>
 
                     <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
+                        <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=&id=$row[id]" ?>">勾三古寺</a></h3>
 
                         <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
 
@@ -1315,13 +1310,13 @@ $result = $mysql->query($sql);
             <ul class="am-list"  >
                 <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                     <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
+                        <a href="<?php echo "news.php?type=&id=$row[id]" ?>">
                             <img src="Temp-images/face.jpg"/>
                         </a>
                     </div>
 
                     <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
+                        <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=&id=$row[id]" ?>">勾三古寺</a></h3>
 
                         <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
                     </div>
@@ -1329,13 +1324,13 @@ $result = $mysql->query($sql);
                 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
                 <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                     <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
+                        <a href="<?php echo "news.php?type=&id=$row[id]" ?>">
                             <img src="Temp-images/face.jpg"/>
                         </a>
                     </div>
 
                     <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
+                        <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=&id=$row[id]" ?>">勾三古寺</a></h3>
 
                         <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
 
@@ -1344,13 +1339,13 @@ $result = $mysql->query($sql);
                 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
                 <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
                     <div class="am-u-sm-4 am-list-thumb">
-                        <a href="http://www.douban.com/online/11624755/">
+                        <a href="<?php echo "news.php?type=&id=$row[id]" ?>">
                             <img src="Temp-images/face.jpg"/>
                         </a>
                     </div>
 
                     <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="http://www.douban.com/online/11624755/">勾三古寺</a></h3>
+                        <h3 class="am-list-item-hd"><a href="<?php echo "news.php?type=&id=$row[id]" ?>">勾三古寺</a></h3>
 
                         <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
 
@@ -1410,39 +1405,16 @@ $mysql->close();
         <i class="am-gotop-icon am-icon-chevron-up"></i>
     </a>
 </div>
-
 <footer>
     <div class="content">
         <ul class="am-avg-sm-5 am-avg-md-5 am-avg-lg-5 am-thumbnails">
-            <li><a href="#">联系我们</a></li>
-            <li><a href="#">加入我们</a></li>
-            <li><a href="#">合作伙伴</a></li>
-            <li><a href="#">广告及服务</a></li>
-            <li><a href="#">友情链接</a></li>
+            <li><a href="https://github.com/prayshouse/News">联系我们</a></li>
+            <li><a href="https://github.com/prayshouse/News">加入我们</a></li>
+            <li><a href="https://github.com/prayshouse/News">合作伙伴</a></li>
+            <li><a href="https://github.com/prayshouse/News">广告及服务</a></li>
+            <li><a href="https://github.com/prayshouse/News">友情链接</a></li>
         </ul>
         <div class="btnlogo"><img src="images/btnlogo.png"/></div>
-        <p>Amaze UI出品<br>© 2016 AllMobilize, Inc. Licensed under MIT license. 模板收集自 <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> -  More Templates  <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>.</p>
-        <div class="w2div">
-        <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
-  am-avg-md-2 am-avg-lg-2 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
-            <li class="w2">
-                <div class="am-gallery-item">
-                    <a href="Temp-images/dd.jpg">
-                        <img src="Temp-images/dd.jpg" />
-                        <h3 class="am-gallery-title">订阅号：Amaze UI</h3>
-                    </a>
-                </div>
-            </li>
-            <li   class="w2">
-                <div class="am-gallery-item">
-                    <a href="Temp-images/dd.jpg">
-                        <img src="Temp-images/dd.jpg"/>
-                        <h3 class="am-gallery-title">服务号：Amaze UI</h3>
-                    </a>
-                </div>
-            </li>
-        </ul>
-        </div>
     </div>
 </footer>
 </body>
