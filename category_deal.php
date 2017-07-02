@@ -7,7 +7,7 @@
  */
 //require_once 'tool.php';
 
-$table_array = array('conSubsription', 'eduSubsription', 'entSubsription', 'femSubsription', 'finSubsription',
+$table_array = array('conSubscription', 'eduSubsription', 'entSubsription', 'femSubsription', 'finSubsription',
     'heaSubsription', 'milSubsription', 'nbaSubsription', 'parSubsription', 'spoSubsription', 'stoSubsription', 'tecSubsription', 'topSubsription');
 $type=$_GET['type'];
 //$type = 12;

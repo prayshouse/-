@@ -49,6 +49,7 @@ function update_database($type)
         $src = str_replace("'", "\'", $val['src']);
         $category = str_replace("'", "\'", $val['category']);
         $pic = str_replace("'", "\'", $val['pic']);
+        if ($pic == '') $pic = 'images/'.$table_array[$type].'.jpg';
         $content = str_replace("'", "\'", $val['content']);
         $url = str_replace("'", "\'", $val['url']);
         $weburl = str_replace("'", "\'", $val['weburl']);
@@ -65,29 +66,25 @@ function update_database($type)
 
 }
 
-//$mysqli = new mysqli("localhost", "root", "shouse", "news");
-//
-//if (mysqli_connect_error()) {
-//    echo 'Could not connect: ' . mysqli_connect_error();
-//}
-//
-//$time = time();
-//console_log(time());
-//$mysqli->query("INSERT INTO version_control (versiontime) VALUES ('$time')");
-//$mysqli->query("INSERT INTO version_control (versiontime) VALUES ('2017-06-27 11:28:24')");
-//
-//$mysqli->close();
-
-//update_database(CONSTELLATION);
-//update_database(EDUCATION);
-//update_database(ENTERTAINMENT);
-//update_database(FEMALE);
-//update_database(FINANCIAL);
-//update_database(HEALTH);
-//update_database(MILITARY);
-//update_database(NBA);
-//update_database(PARENTING);
-//update_database(SPORT);
-//update_database(STOCK);
-//update_database(TECHNOLOGY);
-//update_database(TOP);
+//$mysql = new mysqli("localhost", "root", "shouse", "news");
+//ignore_user_abort();
+//set_time_limit(0);
+//do {
+//    update_database(CONSTELLATION);
+//    update_database(EDUCATION);
+//    update_database(ENTERTAINMENT);
+//    update_database(FEMALE);
+//    update_database(FINANCIAL);
+//    update_database(HEALTH);
+//    update_database(MILITARY);
+//    update_database(NBA);
+//    update_database(PARENTING);
+//    update_database(SPORT);
+//    update_database(STOCK);
+//    update_database(TECHNOLOGY);
+//    update_database(TOP);
+//    $time = time();
+//    $sql = "INSERT INTO version_control (versiontime) VALUES ($time)";
+//    $mysql->query($sql);
+//    sleep(3600);
+//}while (true);

@@ -115,17 +115,16 @@ $row = $result->fetch_assoc();
 
 
 <script>
-    function click(type) {
-        alert("df");
-        console.log("end");
-        window.open('category_deal.php?type=' + type);
-        console.log("end");
-        console.log("jkds", "dfs ");
+    function click() {
+        //console.log("click");
+        alert("clisk");
+//        window.open('category_deal.php?type=' + type);
     }
 </script>
 
 <div id="cattlist" class="am-container">
     <ul class="am-avg-sm-1 am-avg-md-3 am-avg-lg-4">
+
         <li>
             <div class="cattlist_0">
                 <div class="cattlist_1">
@@ -133,25 +132,324 @@ $row = $result->fetch_assoc();
 
                         <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
                             <div class="am-vertical-align-middle">
-                                <img src="Temp-images/face1.jpg">
+                                <img src="images/financial.jpg">
                             </div>
                         </div>
-                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7 to_top_10">
-                            <h1>头条</h1>
+                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7 to_top_5">
+                            <h1>财经</h1>
                         </div>
                     </div>
                 </div>
                 <div class="cattlist_3">
                     <?php
-                    $button_color = ($row['topSubsription'] == 'y') ? "am-btn-warning" : "am-btn-default";
+                    $button_color = ($row['finSubsription'] == 'y') ? "am-btn-warning" : "am-btn-default";
                     ?>
-                    <button onclick="click(12)" type="button" class="to_top_2 am-btn <?php echo $button_color ?>">
+
+                    <button onclick="window.open('category_deal.php?type=' + 4); window.close();" type="button" class="to_top_2 am-btn <?php echo $button_color ?>">
                         <i class="am-icon-plus"></i>
-                        <?php if ($row['topSubsription'] == 'y') echo "已订阅"; else echo "未订阅"; ?>
+                        <?php if ($row['finSubsription'] == 'y') echo "已订阅"; else echo "未订阅"; ?>
                     </button>
                 </div>
             </div>
         </li>
+        <li>
+            <div class="cattlist_0">
+                <div class="cattlist_1">
+                    <div class="am-g">
+
+                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
+                            <div class="am-vertical-align-middle">
+                                <img src="images/sport.jpg">
+                            </div>
+                        </div>
+                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7 to_top_5">
+                            <h1>体育</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="cattlist_3">
+                    <?php
+                    $button_color = ($row['spoSubsription'] == 'y') ? "am-btn-warning" : "am-btn-default";
+                    ?>
+
+                    <button onclick="window.open('category_deal.php?type=' + 9); window.close();" type="button" class="to_top_2 am-btn <?php echo $button_color ?>">
+                        <i class="am-icon-plus"></i>
+                        <?php if ($row['spoSubsription'] == 'y') echo "已订阅"; else echo "未订阅"; ?>
+                    </button>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="cattlist_0">
+                <div class="cattlist_1">
+                    <div class="am-g">
+
+                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
+                            <div class="am-vertical-align-middle">
+                                <img src="images/entertainment.jpg">
+                            </div>
+                        </div>
+                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7 to_top_5">
+                            <h1>娱乐</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="cattlist_3">
+                    <?php
+                    $button_color = ($row['entSubsription'] == 'y') ? "am-btn-warning" : "am-btn-default";
+                    ?>
+
+                    <button onclick="window.open('category_deal.php?type=' + 2); window.close();" type="button" class="to_top_2 am-btn <?php echo $button_color ?>">
+                        <i class="am-icon-plus"></i>
+                        <?php if ($row['entSubsription'] == 'y') echo "已订阅"; else echo "未订阅"; ?>
+                    </button>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="cattlist_0">
+                <div class="cattlist_1">
+                    <div class="am-g">
+
+                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
+                            <div class="am-vertical-align-middle">
+                                <img src="images/military.jpg">
+                            </div>
+                        </div>
+                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7 to_top_5">
+                            <h1>军事</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="cattlist_3">
+                    <?php
+                    $button_color = ($row['milSubsription'] == 'y') ? "am-btn-warning" : "am-btn-default";
+                    ?>
+
+                    <button onclick="window.open('category_deal.php?type=' + 6); window.close();" type="button" class="to_top_2 am-btn <?php echo $button_color ?>">
+                        <i class="am-icon-plus"></i>
+                        <?php if ($row['milSubsription'] == 'y') echo "已订阅"; else echo "未订阅"; ?>
+                    </button>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="cattlist_0">
+                <div class="cattlist_1">
+                    <div class="am-g">
+
+                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
+                            <div class="am-vertical-align-middle">
+                                <img src="images/education.jpg">
+                            </div>
+                        </div>
+                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7 to_top_5">
+                            <h1>教育</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="cattlist_3">
+                    <?php
+                    $button_color = ($row['eduSubsription'] == 'y') ? "am-btn-warning" : "am-btn-default";
+                    ?>
+
+                    <button onclick="window.open('category_deal.php?type=' + 1); window.close();" type="button" class="to_top_2 am-btn <?php echo $button_color ?>">
+                        <i class="am-icon-plus"></i>
+                        <?php if ($row['eduSubsription'] == 'y') echo "已订阅"; else echo "未订阅"; ?>
+                    </button>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="cattlist_0">
+                <div class="cattlist_1">
+                    <div class="am-g">
+
+                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
+                            <div class="am-vertical-align-middle">
+                                <img src="images/technology.jpg">
+                            </div>
+                        </div>
+                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7 to_top_5">
+                            <h1>科技</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="cattlist_3">
+                    <?php
+                    $button_color = ($row['tecSubsription'] == 'y') ? "am-btn-warning" : "am-btn-default";
+                    ?>
+
+                    <button onclick="window.open('category_deal.php?type=' + 11); window.close();" type="button" class="to_top_2 am-btn <?php echo $button_color ?>">
+                        <i class="am-icon-plus"></i>
+                        <?php if ($row['tecSubsription'] == 'y') echo "已订阅"; else echo "未订阅"; ?>
+                    </button>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="cattlist_0">
+                <div class="cattlist_1">
+                    <div class="am-g">
+
+                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
+                            <div class="am-vertical-align-middle">
+                                <img src="images/nba.jpg">
+                            </div>
+                        </div>
+                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7 to_top_5">
+                            <h1>nba</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="cattlist_3">
+                    <?php
+                    $button_color = ($row['nbaSubsription'] == 'y') ? "am-btn-warning" : "am-btn-default";
+                    ?>
+
+                    <button onclick="window.open('category_deal.php?type=' + 7); window.close();" type="button" class="to_top_2 am-btn <?php echo $button_color ?>">
+                        <i class="am-icon-plus"></i>
+                        <?php if ($row['nbaSubsription'] == 'y') echo "已订阅"; else echo "未订阅"; ?>
+                    </button>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="cattlist_0">
+                <div class="cattlist_1">
+                    <div class="am-g">
+
+                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
+                            <div class="am-vertical-align-middle">
+                                <img src="images/stock.jpg">
+                            </div>
+                        </div>
+                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7 to_top_5">
+                            <h1>股票</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="cattlist_3">
+                    <?php
+                    $button_color = ($row['stoSubsription'] == 'y') ? "am-btn-warning" : "am-btn-default";
+                    ?>
+
+                    <button onclick="window.open('category_deal.php?type=' + 10); window.close();" type="button" class="to_top_2 am-btn <?php echo $button_color ?>">
+                        <i class="am-icon-plus"></i>
+                        <?php if ($row['stoSubsription'] == 'y') echo "已订阅"; else echo "未订阅"; ?>
+                    </button>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="cattlist_0">
+                <div class="cattlist_1">
+                    <div class="am-g">
+
+                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
+                            <div class="am-vertical-align-middle">
+                                <img src="images/constellation.jpg">
+                            </div>
+                        </div>
+                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7 to_top_5">
+                            <h1>星座</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="cattlist_3">
+                    <?php
+                    $button_color = ($row['conSubscription'] == 'y') ? "am-btn-warning" : "am-btn-default";
+                    ?>
+
+                    <button onclick="window.open('category_deal.php?type=' + 0); window.close();" type="button" class="to_top_2 am-btn <?php echo $button_color ?>">
+                        <i class="am-icon-plus"></i>
+                        <?php if ($row['conSubscription'] == 'y') echo "已订阅"; else echo "未订阅"; ?>
+                    </button>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="cattlist_0">
+                <div class="cattlist_1">
+                    <div class="am-g">
+
+                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
+                            <div class="am-vertical-align-middle">
+                                <img src="images/female.jpg">
+                            </div>
+                        </div>
+                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7 to_top_5">
+                            <h1>女性</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="cattlist_3">
+                    <?php
+                    $button_color = ($row['femSubsription'] == 'y') ? "am-btn-warning" : "am-btn-default";
+                    ?>
+
+                    <button onclick="window.open('category_deal.php?type=' + 3); window.close();" type="button" class="to_top_2 am-btn <?php echo $button_color ?>">
+                        <i class="am-icon-plus"></i>
+                        <?php if ($row['femSubsription'] == 'y') echo "已订阅"; else echo "未订阅"; ?>
+                    </button>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="cattlist_0">
+                <div class="cattlist_1">
+                    <div class="am-g">
+
+                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
+                            <div class="am-vertical-align-middle">
+                                <img src="images/health.jpg">
+                            </div>
+                        </div>
+                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7 to_top_5">
+                            <h1>健康</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="cattlist_3">
+                    <?php
+                    $button_color = ($row['heaSubsription'] == 'y') ? "am-btn-warning" : "am-btn-default";
+                    ?>
+
+                    <button onclick="window.open('category_deal.php?type=' + 5); window.close();" type="button" class="to_top_2 am-btn <?php echo $button_color ?>">
+                        <i class="am-icon-plus"></i>
+                        <?php if ($row['heaSubsription'] == 'y') echo "已订阅"; else echo "未订阅"; ?>
+                    </button>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="cattlist_0">
+                <div class="cattlist_1">
+                    <div class="am-g">
+
+                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
+                            <div class="am-vertical-align-middle">
+                                <img src="images/parenting.jpg">
+                            </div>
+                        </div>
+                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7 to_top_5">
+                            <h1>育儿</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="cattlist_3">
+                    <?php
+                    $button_color = ($row['parSubsription'] == 'y') ? "am-btn-warning" : "am-btn-default";
+                    ?>
+
+                    <button onclick="window.open('category_deal.php?type=' + 8); window.close();" type="button" class="to_top_2 am-btn <?php echo $button_color ?>">
+                        <i class="am-icon-plus"></i>
+                        <?php if ($row['parSubsription'] == 'y') echo "已订阅"; else echo "未订阅"; ?>
+                    </button>
+                </div>
+            </div>
+        </li>
+
     </ul>
 </div>
 

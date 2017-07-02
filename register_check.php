@@ -25,6 +25,10 @@ if (is_array($_POST) && count($_POST) > 0) {
             header("refresh:0;url=register.php?error=1");
             exit;
         }
+        if ((strlen($id) <= 6) || (strlen($pw) <= 6)) {
+            header("refresh:0;url=register.php?error=2");
+            exit;
+        }
         $sql = "INSERT INTO user (email, ID, password) VALUES ('$email', '$id', '$pw')";
         if ($mysql->query($sql)) {
             // set cookie

@@ -68,7 +68,10 @@ if (is_array($_GET) && count($_GET) > 0) {
                 <input type="password" placeholder="密码" name="password">
                 <?php
                 if ($error != null) {
-                    echo "<a class='error'>邮箱，账号或密码错误</a>";
+                    if ($error == 1)
+                        echo "<a class='error'>邮箱，账号或密码错误</a>";
+                    else
+                        echo "<a class='error'>账号或密码需要在6字节以上</a>";
                 }
                 ?>
                 <button type="submit" class="submit-buttom"">注册</button>

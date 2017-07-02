@@ -174,7 +174,6 @@ $result = $mysql->query($sql);
             </div>
         </div>
         <div class="am-u-sm-0 am-u-md-0 am-u-lg-4 padding-none">
-            <!--div class="star am-container"><span><img src="images/star.png">荣誉榜</span></div-->
             <ul class="padding-none am-gallery am-avg-sm-2 am-avg-md-4 am-avg-lg-2 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
                 <li>
                     <div class="am-gallery-item">
@@ -221,11 +220,28 @@ $result = $mysql->query($sql);
     </div>
 </div>
 
+
 <!--news-->
 <div class="am-g am-container newatype">
     <div class="am-u-lg-8">
+        <?php
+        $table_array = array('conSubscription', 'eduSubsription', 'entSubsription', 'femSubsription', 'finSubsription',
+            'heaSubsription', 'milSubsription', 'nbaSubsription', 'parSubsription', 'spoSubsription', 'stoSubsription', 'tecSubsription', 'topSubsription');
+        $display = array(13);
+        $sql = "SELECT * FROM user WHERE ID='$user';";
+        $result = $mysql->query($sql);
+        $row = $result->fetch_assoc();
+
+        for ($i = 0; $i < 13; $i++) {
+            if ($row[$table_array[$i]] == 'n') {
+                $display[$i] = 0;
+            } else {
+                $display[$i] = 1;
+            }
+        }
+        ?>
         <!-- 财经 -->
-        <div class="am-u-sm-12 am-u-md-12 oh">
+        <div class="am-u-sm-12 am-u-md-12 oh" <?php if ($display[4] == 0) echo "style = 'display:none'"?>>
             <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
                 <h2 class="am-titlebar-title ">
                     财经
@@ -307,7 +323,7 @@ $result = $mysql->query($sql);
             </div>
         </div>
         <!-- 体育 -->
-        <div class="am-u-sm-12 am-u-md-12 oh">
+        <div class="am-u-sm-12 am-u-md-12 oh" <?php if ($display[9] == 0) echo "style = 'display:none'"?>>
             <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
                 <h2 class="am-titlebar-title ">
                     体育
@@ -387,7 +403,7 @@ $result = $mysql->query($sql);
             </div>
         </div>
         <!-- 娱乐 -->
-        <div class="am-u-sm-12 am-u-md-12 oh">
+        <div class="am-u-sm-12 am-u-md-12 oh" <?php if ($display[2] == 0) echo "style = 'display:none'"?>>
             <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
                 <h2 class="am-titlebar-title ">
                     娱乐
@@ -467,7 +483,7 @@ $result = $mysql->query($sql);
             </div>
         </div>
         <!-- 军事 -->
-        <div class="am-u-sm-12 am-u-md-12 oh">
+        <div class="am-u-sm-12 am-u-md-12 oh" <?php if ($display[6] == 0) echo "style = 'display:none'"?>>
             <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
                 <h2 class="am-titlebar-title ">
                     军事
@@ -547,7 +563,7 @@ $result = $mysql->query($sql);
             </div>
         </div>
         <!-- 教育 -->
-        <div class="am-u-sm-12 am-u-md-12 oh">
+        <div class="am-u-sm-12 am-u-md-12 oh" <?php if ($display[1] == 0) echo "style = 'display:none'"?>>
             <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
                 <h2 class="am-titlebar-title ">
                     教育
@@ -627,7 +643,7 @@ $result = $mysql->query($sql);
             </div>
         </div>
         <!-- 科技 -->
-        <div class="am-u-sm-12 am-u-md-12 oh">
+        <div class="am-u-sm-12 am-u-md-12 oh" <?php if ($display[11] == 0) echo "style = 'display:none'"?>>
             <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
                 <h2 class="am-titlebar-title ">
                     科技
@@ -707,7 +723,7 @@ $result = $mysql->query($sql);
             </div>
         </div>
         <!-- NBA -->
-        <div class="am-u-sm-12 am-u-md-12 oh">
+        <div class="am-u-sm-12 am-u-md-12 oh" <?php if ($display[7] == 0) echo "style = 'display:none'"?>>
             <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
                 <h2 class="am-titlebar-title ">
                     NBA
@@ -787,7 +803,7 @@ $result = $mysql->query($sql);
             </div>
         </div>
         <!-- 股票 -->
-        <div class="am-u-sm-12 am-u-md-12 oh">
+        <div class="am-u-sm-12 am-u-md-12 oh" <?php if ($display[10] == 0) echo "style = 'display:none'"?>>
             <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
                 <h2 class="am-titlebar-title ">
                     股票
@@ -867,7 +883,7 @@ $result = $mysql->query($sql);
             </div>
         </div>
         <!-- 星座 -->
-        <div class="am-u-sm-12 am-u-md-12 oh">
+        <div class="am-u-sm-12 am-u-md-12 oh" <?php if ($display[0] == 0) echo "style = 'display:none'"?>>
             <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
                 <h2 class="am-titlebar-title ">
                     星座
@@ -947,7 +963,7 @@ $result = $mysql->query($sql);
             </div>
         </div>
         <!-- 女性 -->
-        <div class="am-u-sm-12 am-u-md-12 oh">
+        <div class="am-u-sm-12 am-u-md-12 oh" <?php if ($display[3] == 0) echo "style = 'display:none'"?>>
             <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
                 <h2 class="am-titlebar-title ">
                     女性
@@ -1027,7 +1043,7 @@ $result = $mysql->query($sql);
             </div>
         </div>
         <!-- 健康 -->
-        <div class="am-u-sm-12 am-u-md-12 oh">
+        <div class="am-u-sm-12 am-u-md-12 oh" <?php if ($display[5] == 0) echo "style = 'display:none'"?>>
             <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
                 <h2 class="am-titlebar-title ">
                     健康
@@ -1107,7 +1123,7 @@ $result = $mysql->query($sql);
             </div>
         </div>
         <!-- 育儿 -->
-        <div class="am-u-sm-12 am-u-md-12 oh">
+        <div class="am-u-sm-12 am-u-md-12 oh" <?php if ($display[8] == 0) echo "style = 'display:none'"?>>
             <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" style="border-bottom: 0px; margin-bottom: -10px">
                 <h2 class="am-titlebar-title ">
                     育儿
@@ -1188,210 +1204,83 @@ $result = $mysql->query($sql);
         </div>
     </div>
     <!-- 侧栏 -->
+
     <div class="am-u-sm-12 am-u-md-12 am-u-lg-4">
-        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
-            <h2 class="am-titlebar-title ">
-                个人专栏
-            </h2>
-            <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
-            </nav>
-        </div>
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default right-bg" data-am-scrollspy="{animation:'fade'}">
-            <ul class="am-list"  >
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="<?php echo "article.php?type=&id=$row[id]" ?>">
-                            <img src="Temp-images/face.jpg" class="face"/>
-                        </a>
-                    </div>
-
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="<?php echo "article.php?type=&id=$row[id]" ?>">勾三古寺</a></h3>
-
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
-                    </div>
-                </li>
-                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="<?php echo "article.php?type=&id=$row[id]" ?>">
-                            <img src="Temp-images/face.jpg" class="face"/>
-                        </a>
-                    </div>
-
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="<?php echo "article.php?type=&id=$row[id]" ?>">勾三古寺</a></h3>
-
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
-
-                    </div>
-                </li>
-                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="<?php echo "article.php?type=&id=$row[id]" ?>">
-                            <img src="Temp-images/face.jpg" class="face"/>
-                        </a>
-                    </div>
-
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="<?php echo "article.php?type=&id=$row[id]" ?>">勾三古寺</a></h3>
-
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
-
-                    </div>
-                </li>
-            </ul>
-        </div>
 
         <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
             <h2 class="am-titlebar-title ">
-                合作专栏
+                你可能感兴趣
             </h2>
-            <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
-            </nav>
         </div>
 
         <div data-am-widget="list_news" class="am-list-news am-list-news-default right-bg" data-am-scrollspy="{animation:'fade'}">
             <ul class="am-list">
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="<?php echo "article.php?type=&id=$row[id]" ?>">
-                            <img src="Temp-images/face.jpg" class="face"/>
+                <?php
+                $sql = "SELECT * FROM user WHERE ID='$user'";
+                $result = $mysql->query($sql);
+                $row = $result->fetch_assoc();
+
+                $table_col = array('conHeat', 'eduHeat', 'entHeat', 'femHeat', 'finHeat',
+                    'heaHeat', 'milHeat', 'nbaHeat', 'parHeat', 'spoHeat', 'stoHeat', 'tecHeat', 'topHeat');
+                $table_name = array('constellation', 'education', 'entertainment', 'female', 'financial',
+                    'health', 'military', 'nba', 'parenting', 'sport', 'stock', 'technology', 'top');
+                $max_col = 12;
+                $max_num = 0;
+                for ($i = 0; $i < 13; $i++) {
+
+                    if ($row[$table_col[$i]] > $max_num) {
+                        $max_col = $i;
+                        $max_num = $row[$table_col[$i]];
+                    }
+                }
+
+                $sql = "SELECT * FROM $table_name[$max_col] ORDER BY id DESC LIMIT 40";
+                $result = $mysql->query($sql);
+
+
+                for ($i = 0; $i < 10; $i++) {
+                    $row = $result->fetch_assoc();
+                    echo "<li class=\"am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left\">
+                    <div class=\"am-u-sm-4 am-list-thumb\">
+                        <a href=\"\">";
+                    echo        "<img src=\"".$row['pic']."\" class=\"face\"/>
                         </a>
                     </div>
 
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="<?php echo "article.php?type=&id=$row[id]" ?>">勾三古寺</a></h3>
-
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
-                    </div>
-                </li>
-                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="<?php echo "article.php?type=&id=$row[id]" ?>">
-                            <img src="Temp-images/face.jpg" class="face"/>
-                        </a>
-                    </div>
-
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="<?php echo "article.php?type=&id=$row[id]" ?>">勾三古寺</a></h3>
-
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
+                    <div class=\" am-u-sm-8 am-list-main\">
+                        <h3 class=\"am-list-item-hd\"><a href=\"\">".$row['title']."</a></h3>
 
                     </div>
-                </li>
-                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="<?php echo "article.php?type=&id=$row[id]" ?>">
-                            <img src="Temp-images/face.jpg" class="face"/>
-                        </a>
-                    </div>
-
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="<?php echo "article.php?type=&id=$row[id]" ?>">勾三古寺</a></h3>
-
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
-
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
-            <h2 class="am-titlebar-title ">
-                评测
-            </h2>
-            <nav class="am-titlebar-nav">
-                <a href="#more">more &raquo;</a>
-            </nav>
-        </div>
-
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default right-bg" data-am-scrollspy="{animation:'fade'}">
-            <ul class="am-list"  >
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="<?php echo "article.php?type=&id=$row[id]" ?>">
-                            <img src="Temp-images/face.jpg"/>
-                        </a>
-                    </div>
-
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="<?php echo "article.php?type=&id=$row[id]" ?>">勾三古寺</a></h3>
-
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
-                    </div>
-                </li>
-                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="<?php echo "article.php?type=&id=$row[id]" ?>">
-                            <img src="Temp-images/face.jpg"/>
-                        </a>
-                    </div>
-
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="<?php echo "article.php?type=&id=$row[id]" ?>">勾三古寺</a></h3>
-
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
-
-                    </div>
-                </li>
-                <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
-                <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
-                    <div class="am-u-sm-4 am-list-thumb">
-                        <a href="<?php echo "article.php?type=&id=$row[id]" ?>">
-                            <img src="Temp-images/face.jpg"/>
-                        </a>
-                    </div>
-
-                    <div class=" am-u-sm-8 am-list-main">
-                        <h3 class="am-list-item-hd"><a href="<?php echo "article.php?type=&id=$row[id]" ?>">勾三古寺</a></h3>
-
-                        <div class="am-list-item-text">代码压缩和最小化。在这里，我们为你收集了9个最好的JavaScript压缩工具将帮</div>
-
-                    </div>
-                </li>
+                    </li>
+                    <hr data-am-widget=\"divider\" style=\"\" class=\"am-divider am-divider-default\" />";
+                }
+                ?>
             </ul>
         </div>
 
+        <!-- 广告 -->
         <ul class="am-gallery am-avg-sm-1 am-avg-md-1 am-avg-lg-1 am-gallery-default" data-am-gallery="{ pureview: true }" >
             <li>
                 <div class="am-gallery-item">
-                    <a href="http://s.amazeui.org/media/i/demos/bing-1.jpg" class="">
-                        <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg"  alt="远方 有一个地方 那里种有我们的梦想"/>
-                        <h3 class="am-gallery-title">远方 有一个地方 那里种有我们的梦想</h3>
-                        <div class="am-gallery-desc">
-                            <div class="am-fr">北京</div>
-                            <div class="am-fl">2016/11/11</div>
-                        </div>
+                    <a href="https://github.com/prayshouse/News" class="">
+                        <img src="images/ad.jpg"  alt="Github"/>
+                        <h3 class="am-gallery-title">shouse新闻网广告位招租</h3>
                     </a>
                 </div>
             </li>
             <li>
                 <div class="am-gallery-item">
-                    <a href="http://s.amazeui.org/media/i/demos/bing-2.jpg" class="">
-                        <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg"  alt="某天 也许会相遇 相遇在这个好地方"/>
-                        <h3 class="am-gallery-title">某天 也许会相遇 相遇在这个好地方</h3>
-                        <div class="am-gallery-desc">
-                            <div class="am-fr">北京</div>
-                            <div class="am-fl">2016/11/11</div>
-                        </div>
+                    <a href="https://github.com/prayshouse/News" class="">
+                        <img src="images/ad.jpg"  alt="Github"/>
+                        <h3 class="am-gallery-title">shouse新闻网广告位招租</h3>
                     </a>
                 </div>
             </li>
             <li>
                 <div class="am-gallery-item">
-                    <a href="http://s.amazeui.org/media/i/demos/bing-2.jpg" class="">
-                        <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg"  alt="某天 也许会相遇 相遇在这个好地方"/>
-                        <h3 class="am-gallery-title">某天 也许会相遇 相遇在这个好地方</h3>
-                        <div class="am-gallery-desc">
-                            <div class="am-fr">北京</div>
-                            <div class="am-fl">2016/11/11</div>
-                        </div>
+                    <a href="https://github.com/prayshouse/News" class="">
+                        <img src="images/ad.jpg"  alt="Github"/>
+                        <h3 class="am-gallery-title">shouse新闻网广告位招租</h3>
                     </a>
                 </div>
             </li>

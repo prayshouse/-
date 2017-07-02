@@ -867,32 +867,38 @@
       <NotNull>1</NotNull>
       <DefaultExpression>&apos;n&apos;</DefaultExpression>
     </column>
-    <index id="207" parent="21" name="user_email_uindex">
+    <column id="207" parent="21" name="entSubsription">
+      <Position>29</Position>
+      <DataType>char(1)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;n&apos;</DefaultExpression>
+    </column>
+    <index id="208" parent="21" name="user_email_uindex">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="208" parent="21" name="PRIMARY">
+    <key id="209" parent="21" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="209" parent="21" name="user_email_uindex">
+    <key id="210" parent="21" name="user_email_uindex">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>user_email_uindex</UnderlyingIndexName>
     </key>
-    <column id="210" parent="22" name="id">
+    <column id="211" parent="22" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="211" parent="22" name="versiontime">
+    <column id="212" parent="22" name="versiontime">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <key id="212" parent="22" name="PRIMARY">
+    <key id="213" parent="22" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
