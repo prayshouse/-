@@ -484,7 +484,7 @@ figure {
 }
 * + p,
 * + hr,
-* + ul,
+/** + ul,*/
 * + ol,
 * + dl,
 * + blockquote,

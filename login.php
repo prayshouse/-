@@ -5,6 +5,12 @@
  * Date: 2017/6/29
  * Time: 15:43
  */
+$error = null;
+if (is_array($_GET) && count($_GET) > 0) {
+    if (isset($_GET["error"]) && $_GET['error']) {
+        $error = $_GET['error'];
+    }
+}
 ?>
 
 <!doctype html>
@@ -51,17 +57,23 @@
 </head>
 <body>
 <div class="login">
-    <div class="btnlogo"><img src="images/btnlogo.png"/></div>
+
+    <div class="btnlogo"><a href="index.php"><img src="images/btnlogo.png"/></a></div>
     <div class="login-top">
         <h1>登陆</h1>
-        <form>
-            <input type="text" value="账号" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '账号';}">
-            <input type="password" value="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}">
+        <form action="login_check.php" method="post" class="inline-form">
+            <input type="text" placeholder="账号" name="id">
+            <input type="password" placeholder="密码" name="password">
+            <?php
+                if ($error != null) {
+                    echo "<a class='error'>账号或密码错误</a>";
+                }
+            ?>
+            <div class="forgot-login">
+                <a href="#" class="forgot-a">忘记密码</a>
+                <button type="submit" class="submit-buttom">登陆</button>
+            </div>
         </form>
-        <div class="forgot">
-            <a href="#">忘记密码</a>
-            <input type="submit" value="登陆" >
-        </div>
     </div>
     <div class="login-bottom">
         <h3>新用户 &nbsp;<a href="register.php">注册</a></h3>

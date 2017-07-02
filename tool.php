@@ -38,3 +38,16 @@ function get_type($str) {
         default: return 12;
     }
 }
+
+function console_log($data)
+{
+    if (is_array($data) || is_object($data))
+    {
+        $output = str_replace("'", "\"", json_decode($data));
+        echo("<script>console.log('".$output."');</script>");
+    }
+    else
+    {
+        echo("<script>console.log('".str_replace("'", "\"", $data)."');</script>");
+    }
+}

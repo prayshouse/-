@@ -1,4 +1,13 @@
 <!doctype html>
+<?php
+require_once "tool.php";
+if (isset($_COOKIE["user"]))
+    $user = $_COOKIE["user"];
+else {
+    header("refresh:0;url=login.php");
+    exit;
+}
+?>
 <html class="no-js">
 <head>
     <meta charset="utf-8">
@@ -24,7 +33,7 @@
     <meta name="msapplication-TileColor" content="#e1652f">
 
     <link rel="icon" type="image/png" href="images/i/favicon.png">
-    <link rel="stylesheet" href="assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="assets/css/amazeui.css">
     <link rel="stylesheet" href="css/public.css">
 
     <!--[if (gte IE 9)|!(IE)]><!-->
@@ -35,10 +44,9 @@
     <！--script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script-->
     <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
     <![endif]-->
-    <script src="assets/js/amazeui.min.js"></script>
+    <script src="assets/js/amazeui.js"></script>
     <script src="js/public.js"></script>
 </head>
-<body>
 
 <header class="am-topbar am-topbar-fixed-top wos-header">
     <div class="am-container">
@@ -54,156 +62,68 @@
 
         <div class="am-collapse am-topbar-collapse" id="collapse-head">
             <ul class="am-nav am-nav-pills am-topbar-nav">
-                <li class="am-active"><a href="index.php">首页</a></li>
-                <li><a href="#">资讯</a></li>
-                <li><a href="#">专栏</a></li>
-                <li class="am-dropdown" data-am-dropdown>
-                    <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        案例 <span class="am-icon-caret-down"></span>
-                    </a>
-                    <ul class="am-dropdown-content">
-                        <li class="am-dropdown-header">案例</li>
-                        <li><a href="#">1. 游戏案例</a></li>
-                        <li><a href="#">2. 营销案例</a></li>
-                        <li><a href="#">3. 工具案例</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">评测</a></li>
-                <li><a href="#">活动</a></li>
+
+                <li><a href="index.php">首页</a></li>
+                <li><a href="list.php?type=top">头条</a></li>
+                <li><a href="list.php?type=financial">财经</a></li>
+                <li><a href="list.php?type=sport">体育</a></li>
+                <li><a href="list.php?type=entertainment">娱乐</a></li>
+                <li><a href="list.php?type=military">军事</a></li>
+                <li><a href="list.php?type=education">教育</a></li>
+                <li><a href="list.php?type=technology">科技</a></li>
+                <li><a href="list.php?type=nba">NBA</a></li>
+                <li><a href="list.php?type=stock">股票</a></li>
+                <li><a href="list.php?type=constellation">星座</a></li>
+                <li><a href="list.php?type=female">女性</a></li>
+                <li><a href="list.php?type=health">健康</a></li>
+                <li><a href="list.php?type=parenting">育儿</a></li>
             </ul>
-
-            <div class="am-topbar-right">
-                <button class="am-btn am-btn-default am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span>注册</button>
-            </div>
-
-            <div class="am-topbar-right">
-                <button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span> 登录</button>
-            </div>
+            <?php
+            echo "<li class=\"am-dropdown am-topbar-right\" data-am-dropdown>";
+            echo "<a class=\"am-dropdown-toggle\" data-am-dropdown-toggle href=\"javascript:;\">";
+                echo "$user <span class=\"am-icon-caret-down\"></span>";
+                echo "</a>";
+            echo "<ul class=\"am-dropdown-content\">";
+                echo "<li class=\"am-dropdown-header\">个人中心</li>";
+                echo "<li><a href=\"category.php\">我的订阅</a></li>";
+                echo "<li><a href=\"logout.php\">登出</a></li>";
+                echo "</ul>";
+            echo "</li>";
+            echo "";
+            echo "";
+            ?>
         </div>
     </div>
 </header>
 
-<div id="category_top">
-    <div class="am-hide-lg-only kz" id="leftbtn">
-        <i class="am-icon-angle-left" ></i>
-    </div>
-    <div class="am-hide-lg-only kz" style="right:0px;" id="rightbtn">
-        <i class="am-icon-angle-right"></i>
-    </div>
-    <div class="am-container" >
-        <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-6 am-thumbnails" id="topface">
-            <li>
-                <a href="category.php">
-                <div class="ctl active">
-                    <img src="Temp-images/face1.jpg">
-                    <h3>一号女嘉宾</h3>
-                    <p>MMM</p>
-                </div>
-                <button type="button" class="am-btn am-btn-primary">进入专栏</button>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.sina.com">
-                <div class="ctl">
-                    <img src="Temp-images/face2.jpg">
-                    <h3>二号女嘉宾</h3>
-                    <p>AmazeUI</p>
-                </div>
-                <button type="button" class="am-btn am-btn-default">进入专栏</button>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.qq.com">
-                    <div class="ctl">
-                        <img src="Temp-images/face3.jpg">
-                        <h3>三号女嘉宾</h3>
-                        <p>云适配</p>
-                    </div>
-                    <button type="button" class="am-btn am-btn-default">进入专栏</button>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.youku.com">
-                    <div class="ctl">
-                        <img src="Temp-images/face4.jpg">
-                        <h3>四号女嘉宾</h3>
-                        <p>XXXX</p>
-                    </div>
-                    <button type="button" class="am-btn am-btn-default">进入专栏</button>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.yahoo.com">
-                    <div class="ctl">
-                        <img src="Temp-images/face5.jpg">
-                        <h3>五号女嘉宾</h3>
-                        <p>去哪</p>
-                    </div>
-                    <button type="button" class="am-btn am-btn-default">进入专栏</button>
-                </a>
-            </li>
-            <li>
-                <a href="http://www.china.com">
-                    <div class="ctl">
-                        <img src="Temp-images/face6.jpg">
-                        <h3>六号女嘉宾</h3>
-                        <p>Yahoo</p>
-                    </div>
-                    <button type="button" class="am-btn am-btn-default">进入专栏</button>
-                </a>
-            </li>
-        </ul>
-
-    </div>
-
-</div>
-
-<script>
-    var countnum=5 //一共多少个图 例如6个请输入5
-    $("#leftbtn").click(function(){
-        var temp_href=$("#topface li:eq(0) a").attr("href");
-        var temp_img=$("#topface li:eq(0) img").attr("src");
-        var temp_h3=$("#topface li:eq(0) h3").php();
-        var temp_p=$("#topface li:eq(0) p").php();
-
-        for (i=0; i<countnum; i++){
-            var n=i+1;
-            $("#topface li:eq("+i+") a").attr('href',$("#topface li:eq("+n+") a").attr("href"));
-            $("#topface li:eq("+i+") img").attr('src',$("#topface li:eq("+n+") img").attr("src"));
-            $("#topface li:eq("+i+") h3").php($("#topface li:eq("+n+") h3").php());
-            $("#topface li:eq("+i+") p").php($("#topface li:eq("+n+") p").php());
-        };
-        $("#topface li:eq("+countnum+") a").attr('href',temp_href);
-        $("#topface li:eq("+countnum+") img").attr('src',temp_img);
-        $("#topface li:eq("+countnum+") h3").php(temp_h3);
-        $("#topface li:eq("+countnum+") p").php(temp_p);
-    });
-    $("#rightbtn").click(function(){
-        var temp_href=$("#topface li:eq("+countnum+") a").attr("href");
-        var temp_img=$("#topface li:eq("+countnum+") img").attr("src");
-        var temp_h3=$("#topface li:eq("+countnum+") h3").php();
-        var temp_p=$("#topface li:eq("+countnum+") p").php();
-
-        for (i=countnum; i>0; i--){
-            var n=i-1;
-            $("#topface li:eq("+i+") a").attr('href',$("#topface li:eq("+n+") a").attr("href"));
-            $("#topface li:eq("+i+") img").attr('src',$("#topface li:eq("+n+") img").attr("src"));
-            $("#topface li:eq("+i+") h3").php($("#topface li:eq("+n+") h3").php());
-            $("#topface li:eq("+i+") p").php($("#topface li:eq("+n+") p").php());
-        };
-        $("#topface li:eq(0) a").attr('href',temp_href);
-        $("#topface li:eq(0) img").attr('src',temp_img);
-        $("#topface li:eq(0) h3").php(temp_h3);
-        $("#topface li:eq(0) p").php(temp_p);
-    });
-</script>
 <div id="cattit">
     <ul class="am-avg-sm-2 am-avg-md-2 am-avg-lg-2">
-        <li><h3><a href="#">合作专栏</a></h3></li>
-        <li  class="active-none"><h3><a href="#">个人专栏</a></h3></li>
+        <h3>订阅</h3>
     </ul>
 </div>
+
+<?php
+require_once 'curl.func.php';
+
+$mysql = new mysqli("localhost", "root", "shouse", "news");
+$mysql->query("SET NAMES utf8");
+$sql = "SELECT * FROM user WHERE ID='$user';";
+$result = $mysql->query($sql);
+$row = $result->fetch_assoc();
+?>
 <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+
+
+<script>
+    function click(type) {
+        alert("df");
+        console.log("end");
+        window.open('category_deal.php?type=' + type);
+        console.log("end");
+        console.log("jkds", "dfs ");
+    }
+</script>
+
 <div id="cattlist" class="am-container">
     <ul class="am-avg-sm-1 am-avg-md-3 am-avg-lg-4">
         <li>
@@ -216,427 +136,28 @@
                                 <img src="Temp-images/face1.jpg">
                             </div>
                         </div>
-                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7">
-
-                            <h3>山边小溪</h3>
-                            <h4>AmazeUI</h4>
-                            <p>文章<span>9</span></p>
+                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7 to_top_10">
+                            <h1>头条</h1>
                         </div>
                     </div>
                 </div>
-                <div class="cattlist_2">
-                    <p>
-                        设计的空间发生快，乐十分的骄傲了开发奥斯卡的房间辣椒反馈。发奥斯卡的房间辣椒反馈。设计的空间发生快，
-                    </p>
-                </div>
                 <div class="cattlist_3">
-                    <button type="button" class="am-btn am-btn-warning">
+                    <?php
+                    $button_color = ($row['topSubsription'] == 'y') ? "am-btn-warning" : "am-btn-default";
+                    ?>
+                    <button onclick="click(12)" type="button" class="to_top_2 am-btn <?php echo $button_color ?>">
                         <i class="am-icon-plus"></i>
-                        橙色按钮
+                        <?php if ($row['topSubsription'] == 'y') echo "已订阅"; else echo "未订阅"; ?>
                     </button>
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <div class="cattlist_0">
-                <div class="cattlist_1">
-                    <div class="am-g">
-
-                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
-                            <div class="am-vertical-align-middle">
-                                <img src="Temp-images/face1.jpg">
-                            </div>
-                        </div>
-                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7">
-
-                            <h3>山边小溪</h3>
-                            <h4>AmazeUI</h4>
-                            <p>文章<span>9</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="cattlist_2">
-                    <p>
-                        设计的空间发生快，乐十分的骄傲了开发奥斯卡的房间辣椒反馈。发奥斯卡的房间辣椒反馈。设计的空间发生快，
-                    </p>
-                </div>
-                <div class="cattlist_3">
-                    <button type="button" class="am-btn am-btn-default">
-                        <i class="am-icon-plus"></i>
-                        灰色按钮
-                    </button>
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <div class="cattlist_0">
-                <div class="cattlist_1">
-                    <div class="am-g">
-
-                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
-                            <div class="am-vertical-align-middle">
-                                <img src="Temp-images/face1.jpg">
-                            </div>
-                        </div>
-                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7">
-
-                            <h3>山边小溪</h3>
-                            <h4>AmazeUI</h4>
-                            <p>文章<span>9</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="cattlist_2">
-                    <p>
-                        设计的空间发生快，乐十分的骄傲了开发奥斯卡的房间辣椒反馈。发奥斯卡的房间辣椒反馈。设计的空间发生快，
-                    </p>
-                </div>
-                <div class="cattlist_3">
-                    <button type="button" class="am-btn am-btn-warning">橙色按钮</button>
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <div class="cattlist_0">
-                <div class="cattlist_1">
-                    <div class="am-g">
-
-                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
-                            <div class="am-vertical-align-middle">
-                                <img src="Temp-images/face1.jpg">
-                            </div>
-                        </div>
-                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7">
-
-                            <h3>山边小溪</h3>
-                            <h4>AmazeUI</h4>
-                            <p>文章<span>9</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="cattlist_2">
-                    <p>
-                        设计的空间发生快，乐十分的骄傲了开发奥斯卡的房间辣椒反馈。发奥斯卡的房间辣椒反馈。设计的空间发生快，
-                    </p>
-                </div>
-                <div class="cattlist_3">
-                    <button type="button" class="am-btn am-btn-warning">橙色按钮</button>
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <div class="cattlist_0">
-                <div class="cattlist_1">
-                    <div class="am-g">
-
-                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
-                            <div class="am-vertical-align-middle">
-                                <img src="Temp-images/face1.jpg">
-                            </div>
-                        </div>
-                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7">
-
-                            <h3>山边小溪</h3>
-                            <h4>AmazeUI</h4>
-                            <p>文章<span>9</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="cattlist_2">
-                    <p>
-                        设计的空间发生快，乐十分的骄傲了开发奥斯卡的房间辣椒反馈。发奥斯卡的房间辣椒反馈。设计的空间发生快，
-                    </p>
-                </div>
-                <div class="cattlist_3">
-                    <button type="button" class="am-btn am-btn-warning">橙色按钮</button>
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <div class="cattlist_0">
-                <div class="cattlist_1">
-                    <div class="am-g">
-
-                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
-                            <div class="am-vertical-align-middle">
-                                <img src="Temp-images/face1.jpg">
-                            </div>
-                        </div>
-                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7">
-
-                            <h3>山边小溪</h3>
-                            <h4>AmazeUI</h4>
-                            <p>文章<span>9</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="cattlist_2">
-                    <p>
-                        设计的空间发生快，乐十分的骄傲了开发奥斯卡的房间辣椒反馈。发奥斯卡的房间辣椒反馈。设计的空间发生快，
-                    </p>
-                </div>
-                <div class="cattlist_3">
-                    <button type="button" class="am-btn am-btn-warning">橙色按钮</button>
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <div class="cattlist_0">
-                <div class="cattlist_1">
-                    <div class="am-g">
-
-                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
-                            <div class="am-vertical-align-middle">
-                                <img src="Temp-images/face1.jpg">
-                            </div>
-                        </div>
-                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7">
-
-                            <h3>山边小溪</h3>
-                            <h4>AmazeUI</h4>
-                            <p>文章<span>9</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="cattlist_2">
-                    <p>
-                        设计的空间发生快，乐十分的骄傲了开发奥斯卡的房间辣椒反馈。发奥斯卡的房间辣椒反馈。设计的空间发生快，
-                    </p>
-                </div>
-                <div class="cattlist_3">
-                    <button type="button" class="am-btn am-btn-warning">橙色按钮</button>
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <div class="cattlist_0">
-                <div class="cattlist_1">
-                    <div class="am-g">
-
-                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
-                            <div class="am-vertical-align-middle">
-                                <img src="Temp-images/face1.jpg">
-                            </div>
-                        </div>
-                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7">
-
-                            <h3>山边小溪</h3>
-                            <h4>AmazeUI</h4>
-                            <p>文章<span>9</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="cattlist_2">
-                    <p>
-                        设计的空间发生快，乐十分的骄傲了开发奥斯卡的房间辣椒反馈。发奥斯卡的房间辣椒反馈。设计的空间发生快，
-                    </p>
-                </div>
-                <div class="cattlist_3">
-                    <button type="button" class="am-btn am-btn-warning">橙色按钮</button>
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <div class="cattlist_0">
-                <div class="cattlist_1">
-                    <div class="am-g">
-
-                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
-                            <div class="am-vertical-align-middle">
-                                <img src="Temp-images/face1.jpg">
-                            </div>
-                        </div>
-                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7">
-
-                            <h3>山边小溪</h3>
-                            <h4>AmazeUI</h4>
-                            <p>文章<span>9</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="cattlist_2">
-                    <p>
-                        设计的空间发生快，乐十分的骄傲了开发奥斯卡的房间辣椒反馈。发奥斯卡的房间辣椒反馈。设计的空间发生快，
-                    </p>
-                </div>
-                <div class="cattlist_3">
-                    <button type="button" class="am-btn am-btn-warning">橙色按钮</button>
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <div class="cattlist_0">
-                <div class="cattlist_1">
-                    <div class="am-g">
-
-                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
-                            <div class="am-vertical-align-middle">
-                                <img src="Temp-images/face1.jpg">
-                            </div>
-                        </div>
-                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7">
-
-                            <h3>山边小溪</h3>
-                            <h4>AmazeUI</h4>
-                            <p>文章<span>9</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="cattlist_2">
-                    <p>
-                        设计的空间发生快，乐十分的骄傲了开发奥斯卡的房间辣椒反馈。发奥斯卡的房间辣椒反馈。设计的空间发生快，
-                    </p>
-                </div>
-                <div class="cattlist_3">
-                    <button type="button" class="am-btn am-btn-warning">橙色按钮</button>
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <div class="cattlist_0">
-                <div class="cattlist_1">
-                    <div class="am-g">
-
-                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
-                            <div class="am-vertical-align-middle">
-                                <img src="Temp-images/face1.jpg">
-                            </div>
-                        </div>
-                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7">
-
-                            <h3>山边小溪</h3>
-                            <h4>AmazeUI</h4>
-                            <p>文章<span>9</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="cattlist_2">
-                    <p>
-                        设计的空间发生快，乐十分的骄傲了开发奥斯卡的房间辣椒反馈。发奥斯卡的房间辣椒反馈。设计的空间发生快，
-                    </p>
-                </div>
-                <div class="cattlist_3">
-                    <button type="button" class="am-btn am-btn-warning">橙色按钮</button>
-                </div>
-            </div>
-        </li>
-
-        <li>
-            <div class="cattlist_0">
-                <div class="cattlist_1">
-                    <div class="am-g">
-
-                        <div class="am-u-sm-4 am-u-md-5 am-u-lg-5 am-vertical-align">
-                            <div class="am-vertical-align-middle">
-                                <img src="Temp-images/face1.jpg">
-                            </div>
-                        </div>
-                        <div class="am-u-sm-8 am-u-md-7 am-u-lg-7">
-
-                            <h3>山边小溪</h3>
-                            <h4>AmazeUI</h4>
-                            <p>文章<span>9</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="cattlist_2">
-                    <p>
-                        设计的空间发生快，乐十分的骄傲了开发奥斯卡的房间辣椒反馈。发奥斯卡的房间辣椒反馈。设计的空间发生快，
-                    </p>
-                </div>
-                <div class="cattlist_3">
-                    <button type="button" class="am-btn am-btn-warning">橙色按钮</button>
                 </div>
             </div>
         </li>
     </ul>
 </div>
 
-<div class="am-container" style="margin: 100px auto">
-    <ul data-am-widget="pagination" class="am-pagination am-pagination-default am-text-center">
-
-        <li class="am-pagination-first ">
-            <a href="#" class="">第一页</a>
-        </li>
-
-        <li class="am-pagination-prev ">
-            <a href="#" class="">上一页</a>
-        </li>
-
-
-        <li class="">
-            <a href="#" class="">1</a>
-        </li>
-        <li >
-            <a href="#">2</a>
-        </li>
-        <li class="">
-            <a href="#" class="">3</a>
-        </li>
-        <li class="">
-            <a href="#" class="">4</a>
-        </li>
-        <li class="">
-            <a href="#" class="">5</a>
-        </li>
-        <li class="">
-            <a href="#" class="">6</a>
-        </li>
-        <li class="">
-            <a href="#" class="">7</a>
-        </li>
-        <li class="">
-            <a href="#" class="">8</a>
-        </li>
-        <li class="am-active">
-            <a href="#">9</a>
-        </li>
-        <li class="">
-            <a href="#" class="">10</a>
-        </li>
-        <li class="">
-            <a href="#" class="">11</a>
-        </li>
-        <li class="">
-            <a href="#" class="">12</a>
-        </li>
-        <li class="">
-            <a href="#" class="">13</a>
-        </li>
-        <li class="">
-            <a href="#" class="">14</a>
-        </li>
-        <li class="">
-            <a href="#" class="">15</a>
-        </li>
-        <li class="">
-            <a href="#" class="">16</a>
-        </li>
-
-
-        <li class="am-pagination-next ">
-            <a href="#" class="">下一页</a>
-        </li>
-
-        <li class="am-pagination-last ">
-            <a href="#" class="">最末页</a>
-        </li>
-    </ul>
-</div>
-
-
-
-
+<?php
+$mysql->close();
+?>
 <div data-am-widget="gotop" class="am-gotop am-gotop-fixed" >
     <a href="#top" title="回到顶部">
         <span class="am-gotop-title">回到顶部</span>
@@ -647,35 +168,13 @@
 <footer>
     <div class="content">
         <ul class="am-avg-sm-5 am-avg-md-5 am-avg-lg-5 am-thumbnails">
-            <li><a href="#">联系我们</a></li>
-            <li><a href="#">加入我们</a></li>
-            <li><a href="#">合作伙伴</a></li>
-            <li><a href="#">广告及服务</a></li>
-            <li><a href="#">友情链接</a></li>
+            <li><a href="https://github.com/prayshouse/News">联系我们</a></li>
+            <li><a href="https://github.com/prayshouse/News">加入我们</a></li>
+            <li><a href="https://github.com/prayshouse/News">合作伙伴</a></li>
+            <li><a href="https://github.com/prayshouse/News">广告及服务</a></li>
+            <li><a href="https://github.com/prayshouse/News">友情链接</a></li>
         </ul>
         <div class="btnlogo"><img src="images/btnlogo.png"/></div>
-        <p>Amaze UI出品<br>京ICP备11008918号-3 Copyright ©2015 HTML5梦工场 助推HTML5发展</p>
-        <div class="w2div">
-            <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
-  am-avg-md-2 am-avg-lg-2 am-gallery-overlay" data-am-gallery="{ pureview: true }" >
-                <li class="w2">
-                    <div class="am-gallery-item">
-                        <a href="Temp-images/dd.jpg">
-                            <img src="Temp-images/dd.jpg" />
-                            <h3 class="am-gallery-title">订阅号：HTML5梦工厂</h3>
-                        </a>
-                    </div>
-                </li>
-                <li   class="w2">
-                    <div class="am-gallery-item">
-                        <a href="Temp-images/dd.jpg">
-                            <img src="Temp-images/dd.jpg"/>
-                            <h3 class="am-gallery-title">服务号：HTML5头条</h3>
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        </div>
     </div>
 </footer>
 </body>

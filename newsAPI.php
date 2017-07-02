@@ -7,7 +7,6 @@
  */
 
 require_once 'curl.func.php';
-require_once 'console.php';
 require_once 'tool.php';
 
 // header("Content-Type:text/html;charset=utf-8");

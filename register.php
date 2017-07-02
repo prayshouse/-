@@ -5,6 +5,12 @@
  * Date: 2017/6/29
  * Time: 15:43
  */
+$error = null;
+if (is_array($_GET) && count($_GET) > 0) {
+    if (isset($_GET["error"]) && $_GET['error']) {
+        $error = $_GET['error'];
+    }
+}
 ?>
 
 <!doctype html>
@@ -49,23 +55,28 @@
     <script src="assets/js/amazeui.min.js"></script>
     <script src="js/public.js"></script>
 </head>
+
 <body>
 <div class="login">
-    <div class="btnlogo"><img src="images/btnlogo.png"/></div>
+    <div class="btnlogo"><a href="index.php"><img src="images/btnlogo.png"/></a></div>
     <div class="login-top">
         <h1>注册</h1>
-        <form>
-            <input type="text" value="邮箱" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '邮箱';}">
-            <input type="text" value="账号" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '账号';}">
-            <input type="password" value="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}">
-        </form>
         <div class="forgot">
-            <input type="submit" value="注册" >
+            <form action="register_check.php" method="post" class="inline-form">
+                <input type="email" placeholder="邮箱" name="email">
+                <input type="text" placeholder="账号" name="id">
+                <input type="password" placeholder="密码" name="password">
+                <?php
+                if ($error != null) {
+                    echo "<a class='error'>邮箱，账号或密码错误</a>";
+                }
+                ?>
+                <button type="submit" class="submit-buttom"">注册</button>
+            </form>
         </div>
     </div>
     <div class="login-bottom">
         <h3>已有账号 &nbsp;<a href="login.php">登陆</a></h3>
-
     </div>
 </div>
 </body>

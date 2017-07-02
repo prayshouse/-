@@ -12,6 +12,13 @@ if (is_array($_GET) && count($_GET) > 0) {
     }
 }
 $typeId = get_type($type);
+$user = null;
+if (isset($_COOKIE["user"])) {
+    $is_login = true;
+    $user = $_COOKIE["user"];
+}
+else
+    $is_login = false;
 ?>
 <!doctype html>
 <html class="no-js">
@@ -87,13 +94,31 @@ $typeId = get_type($type);
                 <li <?php if ($typeId == PARENTING) echo 'class = "am-active"' ?>><a href="list.php?type=parenting">育儿</a></li>
             </ul>
 
-            <div class="am-topbar-right">
-                <a href="register.php"><button class="am-btn am-btn-default am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span>注册</button></a>
-            </div>
+            <?php
+            if ($is_login) {
+                echo "<li class=\"am-dropdown am-topbar-right\" data-am-dropdown>";
+                echo "<a class=\"am-dropdown-toggle\" data-am-dropdown-toggle href=\"javascript:;\">";
+                echo "$user <span class=\"am-icon-caret-down\"></span>";
+                echo "</a>";
+                echo "<ul class=\"am-dropdown-content\">";
+                echo "<li class=\"am-dropdown-header\">个人中心</li>";
+                echo "<li><a href=\"category.php\">我的订阅</a></li>";
+                echo "<li><a href=\"#\">登出</a></li>";
+                echo "</ul>";
+                echo "</li>";
+                echo "";
+                echo "";
 
-            <div class="am-topbar-right">
-                <a href="login.php"><button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span> 登录</button></a>
-            </div>
+            }
+            else {
+                echo "<div class=\"am-topbar-right\">";
+                echo "<a href=\"register.php\"><button class=\"am-btn am-btn-default am-topbar-btn am-btn-sm\"><span class=\"am-icon-pencil\"></span>注册</button></a>";
+                echo "</div>";
+                echo "<div class=\"am-topbar-right\">";
+                echo "<a href=\"login.php\"><button class=\"am-btn am-btn-danger am-topbar-btn am-btn-sm\"><span class=\"am-icon-user\"></span> 登录</button></a>";
+                echo "</div>";
+            }
+            ?>
         </div>
     </div>
 </header>

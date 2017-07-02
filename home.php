@@ -1,13 +1,18 @@
-<doctype html>
-<html class="no-js">
 <?php
-require_once 'tool.php';
-
-if (isset($_COOKIE["user"])) {
-    header("refresh:0;url=home.php");
+/**
+ * Created by PhpStorm.
+ * User: Acer
+ * Date: 2017/7/2
+ * Time: 10:24
+ */
+if (isset($_COOKIE["user"]))
+    $user = $_COOKIE["user"];
+else {
+    header("refresh:0;url=login.php");
     exit;
 }
 ?>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset="utf-8" />
@@ -83,13 +88,18 @@ if (isset($_COOKIE["user"])) {
                 <li><a href="list.php?type=parenting">育儿</a></li>
             </ul>
 
-            <div class="am-topbar-right">
-                <a href="register.php"><button class="am-btn am-btn-default am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span>注册</button></a>
-            </div>
-
-            <div class="am-topbar-right">
-                <a href="login.php"><button class="am-btn am-btn-danger am-topbar-btn am-btn-sm"><span class="am-icon-user"></span> 登录</button></a>
-            </div>
+            <?php
+            echo "<li class=\"am-dropdown am-topbar-right\" data-am-dropdown>";
+            echo "<a class=\"am-dropdown-toggle\" data-am-dropdown-toggle href=\"javascript:;\">";
+            echo "$user <span class=\"am-icon-caret-down\"></span>";
+            echo "</a>";
+            echo "<ul class=\"am-dropdown-content\">";
+            echo "<li class=\"am-dropdown-header\">个人中心</li>";
+            echo "<li><a href=\"category.php\">我的订阅</a></li>";
+            echo "<li><a href=\"logout.php\">登出</a></li>";
+            echo "</ul>";
+            echo "</li>";
+            ?>
         </div>
     </div>
 </header>
